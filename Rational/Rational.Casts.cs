@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ShInUeXx.Numerics
 {
@@ -297,7 +295,7 @@ namespace ShInUeXx.Numerics
         /// <exception cref="FormatException"><paramref name="value"/> is not in known format</exception>
         public static Rational Parse(string value)
         {
-            if(value is null) throw new ArgumentNullException(nameof(value));
+            if (value is null) throw new ArgumentNullException(nameof(value));
             var trimmed = value.Trim();
             Match m;
             if (REGEXP_INT.IsMatch(trimmed))
