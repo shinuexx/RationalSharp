@@ -17,7 +17,7 @@ namespace RationalSharpTests
 
             Assert.AreEqual(-n, r.Numerator);
             Assert.AreEqual(-d, r.Denominator);
-            Assert.AreEqual((n*d).Sign, r.Sign);
+            Assert.AreEqual((n * d).Sign, r.Sign);
         }
         [TestMethod]
         public void CanInitializeFromBigInteger()
@@ -134,8 +134,8 @@ namespace RationalSharpTests
         [TestMethod]
         public void IComparableInterfaceImplemenationIsCorrect()
         {
-            Rational a = new(1,3);
-            Rational b = new(1,4);
+            Rational a = new(1, 3);
+            Rational b = new(1, 4);
 
             Assert.AreEqual(Rational.Half.CompareTo(Rational.Zero), 1);
             Assert.AreEqual(Rational.MinusHalf.CompareTo(Rational.Zero), -1);
