@@ -101,7 +101,7 @@ namespace ShInUeXx.Numerics
         /// <summary>
         /// Defines an implicit conversion of <see cref="decimal"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="value">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(decimal value)
         {
             int[] parts = decimal.GetBits(value);
@@ -117,31 +117,31 @@ namespace ShInUeXx.Numerics
         /// <summary>
         /// Defines an implicit conversion of <see cref="BigInteger"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="other">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(BigInteger other) => new(other);
 
         /// <summary>
         /// Defines an implicit conversion of <see cref="int"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="other">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(int other) => new(other);
 
         /// <summary>
         /// Defines an implicit conversion of <see cref="uint"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="other">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(uint other) => new(other);
 
         /// <summary>
         /// Defines an implicit conversion of <see cref="long"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="other">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(long other) => new(other);
 
         /// <summary>
         /// Defines an implicit conversion of <see cref="ulong"/> value to <see cref="Rational"/> object
         /// </summary>
-        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        /// <param name="other">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(ulong other) => new(other);
 
 

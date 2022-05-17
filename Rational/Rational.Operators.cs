@@ -165,7 +165,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="left">The first value to add</param>
         /// <param name="right">The second value to add</param>
-        /// <<returns>The sum of <paramref name="left"/> and <paramref name="right"/></returns>
+        /// <returns>The sum of <paramref name="left"/> and <paramref name="right"/></returns>
         public static Rational operator +(Rational left, BigInteger right)
         {
             var n = left.Numerator + right * left.Denominator;
@@ -177,7 +177,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="left">The first value to add</param>
         /// <param name="right">The second value to add</param>
-        /// <<returns>The sum of <paramref name="left"/> and <paramref name="right"/></returns>
+        /// <returns>The sum of <paramref name="left"/> and <paramref name="right"/></returns>
         public static Rational operator +(BigInteger left, Rational right)
         {
             var n = left * right.Denominator + right.Numerator;

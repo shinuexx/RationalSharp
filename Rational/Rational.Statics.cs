@@ -61,13 +61,12 @@ namespace ShInUeXx.Numerics
         public static Rational Round(Rational value) => Floor(value + Half);
 
         /// <summary>
-        /// Calculates the integral part of specified <see cref="Rational"> number.
+        /// Calculates the integral part of specified <see cref="Rational"/> number.
         /// </summary>
         /// <param name="value">A number to truncate.</param>
         /// <returns>
         /// The integral part of <paramref name="value"/>. 
-        /// Discard any fractional part of number. 
-        /// If <paramref name="value"/> is valid number, after call result satisfy <see cref="IsInteger"/>. 
+        /// Discard any fractional part of number.
         /// Preserves non valid values.
         /// </returns>
         public static Rational Truncate(Rational value)

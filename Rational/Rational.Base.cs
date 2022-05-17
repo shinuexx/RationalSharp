@@ -117,7 +117,9 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <returns></returns>
         public override string ToString() => string.Format("{0}/{1}", Numerator, Denominator);
+        /// <inheritdoc/>
         public override int GetHashCode() => HashCode.Combine(Numerator, Denominator);
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (obj is not Rational r) return false;
