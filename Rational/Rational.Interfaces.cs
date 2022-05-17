@@ -46,6 +46,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="obj">A <see cref="ulong"/> value</param>
         /// <returns><see langword="true"/> if the current instance and <see cref="ulong"/> have the same value; otherwise, <see langword="false"/></returns>
+        [CLSCompliant(false)]
         public bool Equals(ulong obj)
         {
             return Denominator.IsOne && Numerator.Equals(obj);
@@ -56,6 +57,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="obj">A <see cref="uint"/> value</param>
         /// <returns><see langword="true"/> if the current instance and <see cref="uint"/> have the same value; otherwise, <see langword="false"/></returns>
+        [CLSCompliant(false)]
         public bool Equals(uint obj)
         {
             return Denominator.IsOne && Numerator.Equals(obj);
@@ -122,6 +124,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="integer"></param>
         /// <returns><inheritdoc cref="CompareTo(Rational)"/></returns>
+        [CLSCompliant(false)]
         public int CompareTo(ulong integer)
         {
             return CompareTo(new Rational(integer));
@@ -132,6 +135,7 @@ namespace ShInUeXx.Numerics
         /// </summary>
         /// <param name="integer"></param>
         /// <returns><inheritdoc cref="CompareTo(Rational)"/></returns>
+        [CLSCompliant(false)]
         public int CompareTo(uint integer)
         {
             return CompareTo(new Rational(integer));

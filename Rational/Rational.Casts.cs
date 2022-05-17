@@ -98,6 +98,7 @@ namespace ShInUeXx.Numerics
             }
             return new Rational(sign ? -n : n, d);
         }
+
         /// <summary>
         /// Defines an implicit conversion of <see cref="decimal"/> value to <see cref="Rational"/> object
         /// </summary>
@@ -130,6 +131,7 @@ namespace ShInUeXx.Numerics
         /// Defines an implicit conversion of <see cref="uint"/> value to <see cref="Rational"/> object
         /// </summary>
         /// <param name="other">The value to convert to <see cref="Rational"/></param>
+        [CLSCompliant(false)]
         public static implicit operator Rational(uint other) => new(other);
 
         /// <summary>
@@ -142,6 +144,7 @@ namespace ShInUeXx.Numerics
         /// Defines an implicit conversion of <see cref="ulong"/> value to <see cref="Rational"/> object
         /// </summary>
         /// <param name="other">The value to convert to <see cref="Rational"/></param>
+        [CLSCompliant(false)]
         public static implicit operator Rational(ulong other) => new(other);
 
 
@@ -166,6 +169,7 @@ namespace ShInUeXx.Numerics
         /// <param name="value">The value to convert to a <see cref="ulong"/></param>
         /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
         /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/></exception>
+        [CLSCompliant(false)]
         public static explicit operator ulong(Rational value) => (ulong)(BigInteger)value;
 
         /// <summary>
@@ -182,6 +186,7 @@ namespace ShInUeXx.Numerics
         /// <param name="value">The value to convert to a <see cref="uint"/></param>
         /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
         /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/></exception>
+        [CLSCompliant(false)]
         public static explicit operator uint(Rational value) => (uint)(BigInteger)value;
 
         /// <summary>

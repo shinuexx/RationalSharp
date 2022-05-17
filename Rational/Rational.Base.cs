@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Numerics;
 
+[assembly: CLSCompliant(true)]
+
 namespace ShInUeXx.Numerics
 {
     /// <summary>
     /// Representing arbitrary rational as BigIntegers ratio
     /// </summary>
+    [CLSCompliant(true)]
     public readonly partial struct Rational
     {
         /// <summary>
