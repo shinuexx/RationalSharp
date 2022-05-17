@@ -10,6 +10,10 @@ namespace ShInUeXx.Numerics
 {
     public readonly partial struct Rational
     {
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="float"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(float x)
         {
             bool sign = (x < 0);
@@ -51,6 +55,10 @@ namespace ShInUeXx.Numerics
             }
             return new Rational(sign ? -n : n, d);
         }
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="double"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(double x)
         {
             bool sign = (x < 0);
@@ -92,6 +100,10 @@ namespace ShInUeXx.Numerics
             }
             return new Rational(sign ? -n : n, d);
         }
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="decimal"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(decimal value)
         {
             int[] parts = decimal.GetBits(value);
@@ -104,18 +116,80 @@ namespace ShInUeXx.Numerics
             return new Rational(sign ? -n : n, d);
         }
 
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="BigInteger"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(BigInteger other) => new(other);
+
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="int"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(int other) => new(other);
+
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="uint"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(uint other) => new(other);
+
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="long"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(long other) => new(other);
+
+        /// <summary>
+        /// Defines an implicit conversion of <see cref="ulong"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
         public static implicit operator Rational(ulong other) => new(other);
 
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="BigInteger"/> object
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="BigInteger"/></param>
+        /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
         public static explicit operator BigInteger(Rational value) => value.Numerator / value.Denominator;
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="long"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="long"/></param>
+        /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
+        /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="long.MinValue"/> or greater than <see cref="long.MaxValue"/></exception>
         public static explicit operator long(Rational value) => (long)(BigInteger)value;
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="ulong"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="ulong"/></param>
+        /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
+        /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/></exception>
         public static explicit operator ulong(Rational value) => (ulong)(BigInteger)value;
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="int"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="int"/></param>
+        /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
+        /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="int.MinValue"/> or greater than <see cref="int.MaxValue"/></exception>
         public static explicit operator int(Rational value) => (int)(BigInteger)value;
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="uint"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="uint"/></param>
+        /// <exception cref="DivideByZeroException"><paramref name="value"/> is not valid <see cref="Rational"/></exception>
+        /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="uint.MinValue"/> or greater than <see cref="uint.MaxValue"/></exception>
         public static explicit operator uint(Rational value) => (uint)(BigInteger)value;
 
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="double"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="double"/></param>
         public static explicit operator double(Rational value)
         {
             var s = value.Numerator < 0;
@@ -134,9 +208,17 @@ namespace ShInUeXx.Numerics
             di = (double)q;
             dd = (double)d;
             dr = (double)r;
-            double _ = di + dr / dd;
+            double _;
+            unchecked
+            {
+                _ = di + dr / dd;
+            }
             return s ? -_ : _;
         }
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="float"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="float"/></param>
         public static explicit operator float(Rational value)
         {
             var s = value.Numerator < 0;
@@ -155,9 +237,19 @@ namespace ShInUeXx.Numerics
             di = (float)q;
             dr = (float)r;
             dd = (float)d;
-            float _ = di + dr / dd;
+            float _;
+            unchecked
+            {
+                _ = di + dr / dd;
+            }
             return s ? -_ : _;
         }
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="decimal"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="decimal"/></param>
+        /// <exception cref="OverflowException"><paramref name="value"/> is less than <see cref="decimal.MinValue"/> or greater than <see cref="decimal.MaxValue"/> </exception>
         public static explicit operator decimal(Rational value)
         {
             var s = value.Numerator < 0;
@@ -181,6 +273,11 @@ namespace ShInUeXx.Numerics
             return s ? -_ : _;
         }
 
+        /// <summary>
+        /// Create new instance of <see cref="Rational"/> from continued fraction form
+        /// </summary>
+        /// <param name="values">A continued fraction</param>
+        /// <returns></returns>
         public static Rational FromContinuedForm(IEnumerable<int> values)
         {
             var f = PositiveInfinity;
@@ -190,8 +287,17 @@ namespace ShInUeXx.Numerics
             }
             return f;
         }
+
+        /// <summary>
+        /// Converts the string representation of a number to its <see cref="Rational"/> equivalent
+        /// </summary>
+        /// <param name="value">A string that contains the number to convert</param>
+        /// <returns>A value that is equivalent to het number specified in the <paramref name="value"/> parameter</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null</exception>
+        /// <exception cref="FormatException"><paramref name="value"/> is not in known format</exception>
         public static Rational Parse(string value)
         {
+            if(value is null) throw new ArgumentNullException(nameof(value));
             var trimmed = value.Trim();
             Match m;
             if (REGEXP_INT.IsMatch(trimmed))
@@ -240,9 +346,21 @@ namespace ShInUeXx.Numerics
             }
             else
             {
-                throw new ArgumentOutOfRangeException(nameof(value));
+                throw new FormatException(string.Format("Parameter {0} is in unknown format: {1}", nameof(value), value));
             }
         }
+
+        /// <summary>
+        /// Tries to convert the string representation of a number to its <see cref="Rational"/> equivalent, and returns a value that indicates whether the conversion succeeded
+        /// </summary>
+        /// <param name="value">The string representation of a number</param>
+        /// <param name="rational">
+        /// When this method returns, contains the <see cref="Rational"/> equivalent to the number that is contained in <paramref name="value"/>, 
+        /// or <see cref="NaN"/> is the convertion fails. 
+        /// The convertion fails if the <paramref name="value"/> parametes is <c>null</c> or is not of the correct format.
+        /// This parameter is passed uninitialized.
+        /// </param>
+        /// <returns><c>true</c> if <paramref name="value"/> was converted successfully; otherwise, <c>false</c></returns>
         public static bool TryParse(string value, out Rational rational)
         {
             try
