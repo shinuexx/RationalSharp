@@ -9,6 +9,52 @@ namespace ShInUeXx.Numerics
     public readonly partial struct Rational
     {
         /// <summary>
+        /// Defines an implicit conversion of <see cref="System.Half"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="x">The value to convert to <see cref="Rational"/></param>
+        public static implicit operator Rational(Half x)
+        { 
+            short hval = BitConverter.HalfToInt16Bits(x);
+            bool sign = (hval < 0);
+            short exp = (short)((hval >> 10) & half_exp_mask);
+            short fraction = (short)(hval & half_matissa_mask);
+            BigInteger n, d;
+            if (exp == 0)
+            {
+                if (fraction == 0)
+                {
+                    n = 0;
+                    d = 1;
+                }
+                else
+                {
+                    n = fraction;
+                    d = BigInteger.Pow(2, 24);
+                }
+            }
+            else if (exp == 0x1f)
+            {
+                n = fraction == 0 ? 1 : 0;
+                d = 0;
+            }
+            else
+            {
+                n = fraction + half_default_denominator;
+                d = half_default_denominator;
+                exp -= 25;
+                if (exp < 0)
+                {
+                    d <<= (-exp);
+                }
+                else
+                {
+                    n <<= exp;
+                }
+            }
+            return new(sign ? -n : n, d);
+        }
+
+        /// <summary>
         /// Defines an implicit conversion of <see cref="float"/> value to <see cref="Rational"/> object
         /// </summary>
         /// <param name="x">The value to convert to <see cref="Rational"/></param>
@@ -116,6 +162,12 @@ namespace ShInUeXx.Numerics
         }
 
         /// <summary>
+        /// Defines an explicit conversion of <see cref="Complex"/> value to <see cref="Rational"/> object
+        /// </summary>
+        /// <param name="value">The value to convert to <see cref="Rational"/></param>
+        public static explicit operator Rational(Complex value) => (Rational)value.Real;
+
+        /// <summary>
         /// Defines an implicit conversion of <see cref="BigInteger"/> value to <see cref="Rational"/> object
         /// </summary>
         /// <param name="other">The value to convert to <see cref="Rational"/></param>
@@ -190,6 +242,11 @@ namespace ShInUeXx.Numerics
         public static explicit operator uint(Rational value) => (uint)(BigInteger)value;
 
         /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="Complex"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="Complex"/></param>
+        public static explicit operator Complex(Rational value) => new((double)value, 0);
+        /// <summary>
         /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="double"/> value
         /// </summary>
         /// <param name="value">The value to convert to a <see cref="double"/></param>
@@ -246,6 +303,35 @@ namespace ShInUeXx.Numerics
                 _ = di + dr / dd;
             }
             return s ? -_ : _;
+        }
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="Rational"/> object to a <see cref="System.Half"/> value
+        /// </summary>
+        /// <param name="value">The value to convert to a <see cref="System.Half"/></param>
+        public static explicit operator Half(Rational value)
+        {
+            var s = value.Numerator < 0;
+            var a = BigInteger.Abs(value.Numerator);
+            BigInteger q;
+            q = BigInteger.DivRem(a, value.Denominator, out BigInteger r);
+            BigInteger d = value.Denominator;
+            var noOfBits = BigInteger.Log(d, 2);
+            if (noOfBits > 25)
+            {
+                var move = (int)(noOfBits - 12);
+                r >>= move;
+                d >>= move;
+            }
+            float di, dr, dd;
+            di = (float)q;
+            dr = (float)r;
+            dd = (float)d;
+            float _;
+            unchecked
+            {
+                _ = di + dr / dd;
+            }
+            return (Half)(s ? -_ : _);
         }
 
         /// <summary>

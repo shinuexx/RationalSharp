@@ -49,6 +49,19 @@ namespace ShInUeXx.Numerics
         private const int float_default_denominator = (1 << 23);
 
         /// <summary>
+        /// Bitmask for half exponent
+        /// </summary>
+        private const short half_exp_mask = 0x1f;
+        /// <summary>
+        /// Bitmask for half mantissa
+        /// </summary>
+        private const short half_matissa_mask = (1 << 10) - 1;
+        /// <summary>
+        /// Default half denominator
+        /// </summary>
+        private const short half_default_denominator = (1 << 10);
+
+        /// <summary>
         /// Move sign of from last to first <see cref="BigInteger"/> object.
         /// </summary>
         /// <param name="args">Tuple of two <see cref="BigInteger"/> objects <c>(first, last)</c></param>

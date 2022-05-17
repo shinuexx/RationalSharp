@@ -46,8 +46,9 @@ namespace RationalSharpTests
             BigInteger gn = 884279719003555, gd = 281474976710656;
             decimal h = new(1, 0, 0, false, 28);
             BigInteger hd = BigInteger.Pow(10, 28);
+            Complex i = new(Math.PI, 0d);
 
-            Rational value1, value2, value3, value4, value5, value6, value7, value8;
+            Rational value1, value2, value3, value4, value5, value6, value7, value8, value9;
 
             value1 = a;
             value2 = b;
@@ -57,6 +58,7 @@ namespace RationalSharpTests
             value6 = f;
             value7 = g;
             value8 = h;
+            value9 = (Rational)i;
 
             Assert.AreEqual(value1.Numerator, (BigInteger)a);
             Assert.AreEqual(value1.Denominator, BigInteger.One);
@@ -82,6 +84,9 @@ namespace RationalSharpTests
             Assert.AreEqual(value8.Numerator, BigInteger.One);
             Assert.AreEqual(value8.Denominator, hd);
 
+            Assert.AreEqual(value9.Numerator, gn);
+            Assert.AreEqual(value9.Denominator, gd);
+
             Assert.AreEqual((int)value1, a);
             Assert.AreEqual((uint)value2, b);
             Assert.AreEqual((long)value3, c);
@@ -90,6 +95,7 @@ namespace RationalSharpTests
             Assert.AreEqual((float)value6, f, float.Epsilon);
             Assert.AreEqual((double)value7, g, double.Epsilon);
             Assert.AreEqual((decimal)value8, h);
+            Assert.AreEqual((Complex)value9, i);
         }
         [TestMethod]
         public void StaticPropertiesAreCorrect()
