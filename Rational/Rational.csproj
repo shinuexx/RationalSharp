@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<VersionPrefix>1.0.2</VersionPrefix>
-    <TargetFramework>net6.0</TargetFramework>
+	<VersionPrefix>1.1.0</VersionPrefix>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>ShInUeXx.Numerics</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
@@ -17,6 +17,8 @@
     <SignAssembly>False</SignAssembly>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

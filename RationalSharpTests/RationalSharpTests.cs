@@ -1,11 +1,10 @@
-using NUnit.Framework.Internal;
 using ShInUeXx.Numerics;
 using System.Numerics;
 
-namespace RationalSharpTests
+namespace RationalTests
 {
     [TestClass]
-    public class InitialisationUnitTest
+    public class RationalSharpTests
     {
         [TestMethod]
         public void CanInitializeFromRatio()
@@ -29,8 +28,8 @@ namespace RationalSharpTests
             Assert.AreEqual(value, r.Numerator);
             Assert.AreEqual(BigInteger.One, r.Denominator);
             Assert.AreEqual(value.Sign, r.Sign);
-            Assert.IsTrue(r.IsInteger);
-            Assert.IsTrue(r.IsValid);
+            Assert.IsTrue(Rational.IsInteger(r));
+            Assert.IsTrue(Rational.IsFinite(r));
         }
         [TestMethod]
         public void CanCastFromBuiltinTypes()
@@ -132,10 +131,14 @@ namespace RationalSharpTests
             var a = Rational.One;
             var b = Rational.NaN;
             var c = new Rational(1234, 4321);
+            var d = Rational.From(0.5);
 
             Assert.AreEqual(a.ToString(), "1/1");
             Assert.AreEqual(b.ToString(), "0/0");
             Assert.AreEqual(c.ToString(), "1234/4321");
+
+            Assert.AreEqual(a.ToString("W", null), "1 0/1");
+            Assert.AreEqual(d.ToString("D3", null), "0.500");
         }
         [TestMethod]
         public void IComparableInterfaceImplemenationIsCorrect()
